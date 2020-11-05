@@ -8,6 +8,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+
+/**
+ * The Runner class is the class that converts user input to action.
+ *
+ * input: Connection obj, availableCommands obj
+ *
+ */
 public class Runner {
     private final Connection conn;
     private final Commands availableCommands;
@@ -49,10 +56,6 @@ public class Runner {
                         order = " ORDER BY m.duration DESC ";
                     }
                     if(flagList.isEmpty()){
-                        System.out.println("SELECT p.name, m.title, duration "+
-                                "FROM movies m JOIN people p ON "+
-                                "m.director_id = p.people_id"+
-                                order);
                         ResultSet resultSet = conn.createStatement().executeQuery(
                                 "SELECT p.name, m.title, duration "+
                                     "FROM movies m JOIN people p ON "+
@@ -98,10 +101,7 @@ public class Runner {
 
                         }
                     }else{
-                        System.out.println("SELECT p.name, m.title, m.duration "+
-                                "FROM movies m JOIN people p ON "+
-                                "m.director_id = p.people_id "+regex+
-                                order);
+
                         ResultSet resultSet = conn.createStatement().executeQuery(
                                 "SELECT p.name, m.title, m.duration "+
                                     "FROM movies m JOIN people p ON "+
@@ -222,8 +222,64 @@ public class Runner {
 
                 }
                 case "d" -> {
-                    System.out.println("delete");
-                    System.out.println("delete2");
+                    Scanner scanner3 = new Scanner(System.in);
+
+                    if(flagList.isEmpty()) {
+                        String option;
+                        do{
+                            System.out.println("Would you like to delete people (p) or movies (m)?");
+                            option = scanner3.nextLine();
+                        }while(!(option.equals("p") || option.equals("m")));
+
+                        flagList.add("-"+option);
+
+                    }
+
+                    if(flagList.contains("-p")) {
+                        System.out.println("Person name (exactly): ");
+                        String nome = scanner3.nextLine();
+
+                        try{
+                            ResultSet resultAdd;
+                            resultAdd = conn.createStatement().executeQuery(
+                                    "SELECT p.people_id "+
+                                            " FROM people p "+
+                                            " WHERE p.name = '"+nome+"'"
+                            );
+
+                            resultAdd.next();
+                            String person_id = resultAdd.getString("people_id");
+                            System.out.println("Trying to remove");
+                            conn.createStatement().execute(
+                                    "DELETE FROM `people` WHERE (`people_id` = '"+person_id+"')"
+                            );
+
+
+                        }catch (Exception e){
+                            System.out.println(e.getMessage());
+                        }
+                    }else if(flagList.contains("-m")) {
+                        System.out.println("Movie title (exactly): ");
+                        String nome = scanner3.nextLine();
+
+                        try{
+                            ResultSet resultAdd;
+                            resultAdd = conn.createStatement().executeQuery(
+                                    "SELECT m.title "+
+                                            " FROM movies m "+
+                                            " WHERE m.title = '"+nome+"'"
+                            );
+
+                            resultAdd.next();
+                            String person_id = resultAdd.getString("title");
+                            conn.createStatement().execute(
+                                    "DELETE FROM `movies` WHERE (`title` = '"+nome+"')"
+                            );
+                        }catch (Exception e){
+                            System.out.println(e.getMessage());
+                        }
+                    }
+
                 }
             }
         }
