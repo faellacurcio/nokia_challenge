@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Main {
 
@@ -13,6 +11,9 @@ public class Main {
     static Validation validator = new Validation(availableCommands);
 
     static final boolean DEBUG = true;
+
+    static Connection conn = null;
+
 
     static {
         String newCommand;
@@ -58,7 +59,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Connection conn = null;
 
         try {
             String mysqlUrl = "jdbc:mysql://localhost/nokia_challenge_db?serverTimezone=UTC";
@@ -82,16 +82,22 @@ public class Main {
         }
 
 
-        Scanner scanner = new Scanner(System.in);
-        while(true){
-            System.out.print("> ");
-            String command = scanner.nextLine();
+        try{
+            Runner runner = new Runner(conn, availableCommands);
 
-            validator.checkIntegrity(command);
+            Scanner scanner = new Scanner(System.in);
 
-            if(command.equals("exit")){
-                break;
+            while(true){
+                System.out.print("> ");
+                String command = scanner.nextLine();
+
+                if(validator.checkIntegrity(command)){
+                    runner.runCommand(command);
+                }
+
             }
+        }catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
