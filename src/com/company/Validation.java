@@ -8,22 +8,24 @@ import java.util.regex.Pattern;
 
 public class Validation {
 
-    private static Commands availableCommands;
-    private boolean DEBUG = false;
+    private final Commands availableCommands;
+    private final boolean DEBUG;
+
+    public Validation(Commands availableCommands, boolean DEBUG) {
+        this.availableCommands = availableCommands;
+        this.DEBUG = DEBUG;
+    }
 
     public Validation(Commands availableCommands) {
         this.availableCommands = availableCommands;
+        this.DEBUG = false;
     }
 
     public boolean checkIntegrity(String raw_command){
 
-        List<String> matchList = new ArrayList<>();
-        Pattern regex;
-        regex = Pattern.compile("[^\\s\"']+|\"[^\"]*\"|'[^']*'");
-        Matcher regexMatcher = regex.matcher(raw_command);
-        while (regexMatcher.find()) {
-            matchList.add(regexMatcher.group());
-        }
+        List matchList = Util.parseToList(raw_command);
+
+        //TODO: Use Utils.parseToHashMap to check weird cases of flags.
 
         //Debug
         if (DEBUG)
@@ -34,7 +36,7 @@ public class Validation {
         if (matchListIterator.hasNext()){
             String main_command = matchListIterator.next();
 
-            if(!this.availableCommands.hasCommand(main_command)){
+            if(!availableCommands.hasCommand(main_command)){
                 System.out.println(main_command+" is not a valid operation.");
             }else{
                 boolean isParam = false;
@@ -56,7 +58,7 @@ public class Validation {
                                     System.out.println("flag: "+testingSwitch+" has parameters");
                                 isParam = true;
                             }else{
-                                //TODO: Check integrity of param
+                                //TODO: Check integrity of param (is it flag? Does it have "..."?)
                                 if (DEBUG)
                                     System.out.println("flag: "+testingSwitch+" has no parameters");
                             }
