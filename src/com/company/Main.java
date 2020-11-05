@@ -69,7 +69,7 @@ public class Main {
                     username,
                     password
             );
-            
+
             System.out.println("Connection with the databse established...");
 //            ScriptRunner sr = new ScriptRunner(con);
 
