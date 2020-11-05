@@ -11,10 +11,9 @@ public class Main {
     static Commands availableCommands = new Commands();
     static Validation validator = new Validation(availableCommands);
 
-
     static Connection conn = null;
 
-
+    //Initialize the availableCommands obj to store all commands, flags and
     static {
         String newCommand;
 
@@ -59,6 +58,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // Tries to connect with the database
         try {
             String mysqlUrl = "jdbc:mysql://localhost/nokia_challenge_db?serverTimezone=UTC";
             String username = "admin";
@@ -71,6 +71,26 @@ public class Main {
             );
 
             System.out.println("Connection with the database established...");
+            System.out.println(
+                    "\n"+
+                    "Wellcome to my solution of the Nokia challenge.\n"+
+                    "This is a console application, the commands are:\n"+
+                    "l: List the movies\n"+
+                    "\t-t \"regex\" :Search for a title using regex.\n"+
+                    "\t-v : Display the actors in the movie\n"+
+                    "\t-d \"regex\" :Search for a director using regex.\n"+
+                    "\t-a \"regex\" :Search for an actor using regex.\n"+
+                    "\t-la : lists the movies with ascending order by their length\n"+
+                    "\t-ld : lists the movies with descending order by their length\n"+
+                    "\n"+
+                    "a: Add new people/movies"+
+                    "\t-p : Add new people.\n"+
+                    "\t-m : Add new movie.\n"+
+                    "\n"+
+                    "d: Delete people/movies"+
+                    "\t-p : Delete new people.\n"+
+                    "\t-m : Delete new movie.\n"
+            );
             //TODO: Run script to initialize the database through JAVA.
 
         } catch (SQLException ex) {
@@ -86,6 +106,7 @@ public class Main {
 
             Scanner scanner = new Scanner(System.in);
 
+            // Main loop, receives multiple inputs validate and run the commands.
             while(true){
                 System.out.print("> ");
                 String command = scanner.nextLine();
