@@ -9,9 +9,8 @@ import java.util.regex.Pattern;
 
 public class Util {
     public static List<String> parseToList(String raw_command){
-        List<String> matchList = new ArrayList<>();
-        Pattern regex;
-        regex = Pattern.compile("[^\\s\"']+|\"[^\"]*\"|'[^']*'");
+        List<String> matchList = new ArrayList<String>();
+        Pattern regex = Pattern.compile("[^\\s\"']+|\"[^\"]*\"|'[^']*'");
         Matcher regexMatcher = regex.matcher(raw_command);
         while (regexMatcher.find()) {
             matchList.add(regexMatcher.group());
@@ -42,7 +41,9 @@ public class Util {
                 }else{
                     if (availableCommands.hasFlag(main_command,flagOrParam)){
                         flagsList.add(flagOrParam);
-                        isParam = true;
+                        if (availableCommands.flagHasParam(main_command,flagOrParam)) {
+                            isParam = true;
+                        }
                     }
                 }
             }
