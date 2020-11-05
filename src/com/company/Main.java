@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.*;
 
+
 public class Main {
 
     static Commands availableCommands = new Commands();
     static Validation validator = new Validation(availableCommands);
 
-    static final boolean DEBUG = true;
 
     static Connection conn = null;
 
@@ -59,7 +59,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         try {
             String mysqlUrl = "jdbc:mysql://localhost/nokia_challenge_db?serverTimezone=UTC";
             String username = "admin";
@@ -71,7 +70,7 @@ public class Main {
                     password
             );
 
-            System.out.println("Connection with the databse established...");
+            System.out.println("Connection with the database established...");
             //TODO: Run script to initialize the database through JAVA.
 
         } catch (SQLException ex) {

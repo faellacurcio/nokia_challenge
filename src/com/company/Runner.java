@@ -3,21 +3,18 @@ package com.company;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 public class Runner {
-    private Connection conn;
-    private Commands availableCommands;
-    private Statement statement;
+    private final Connection conn;
+    private final Commands availableCommands;
 
-    public Runner(Connection conn, Commands availableCommands) throws SQLException {
+    public Runner(Connection conn, Commands availableCommands) {
         this.conn = conn;
         this.availableCommands = availableCommands;
-        this.statement = conn.createStatement();
     }
 
     public void runCommand(String raw_command) throws SQLException {
@@ -30,25 +27,37 @@ public class Runner {
 
         if (matchListIterator.hasNext()) {
             String main_command = matchListIterator.next();
-            System.out.println(flagList);
 
             switch (main_command) {
                 case "l" -> {
                     String regex = "";
+                    String order = "ORDER BY m.title ASC ";
                     if(flagList.contains("-t")) {
                         regex = " AND m.title REGEXP "+flags.get("-t")+" ";
                     }
                     if(flagList.contains("-d")) {
-                        regex = " AND m.title REGEXP "+flags.get("-d")+" ";
+                        regex = " AND (p.name) REGEXP "+flags.get("-d")+" ";
                     }
+                    //TODO: Fix -a flag
                     if(flagList.contains("-a")) {
-                    regex = " AND (p.name) REGEXP "+flags.get("-a")+" ";
+                        regex = " AND (p.name) REGEXP "+flags.get("-a")+" ";
+                    }
+                    if(flagList.contains("-la")) {
+                        order = " ORDER BY m.duration ASC ";
+                    }
+                    if(flagList.contains("-ld")) {
+                        order = " ORDER BY m.duration DESC ";
                     }
                     if(flagList.isEmpty()){
+                        System.out.println("SELECT p.name, m.title, duration "+
+                                "FROM movies m JOIN people p ON "+
+                                "m.director_id = p.people_id"+
+                                order);
                         ResultSet resultSet = conn.createStatement().executeQuery(
                                 "SELECT p.name, m.title, duration "+
                                     "FROM movies m JOIN people p ON "+
-                                    "m.director_id = p.people_id ORDER BY m.title ASC"
+                                    "m.director_id = p.people_id "+
+                                    order
                         );
                         while (resultSet.next()){
                             String title = resultSet.getString("title");
@@ -62,7 +71,7 @@ public class Runner {
                                 "SELECT p.name, m.title, duration "+
                                     "FROM movies m JOIN people p "+
                                     "ON m.director_id = p.people_id "+regex+
-                                    " ORDER BY m.title ASC"
+                                    order
                         );
                         //SELECT stuff FROM table1 JOIN table2 ON table1.relatedColumn = table2.relatedColumn
                         while (resultSet.next()){
@@ -85,19 +94,19 @@ public class Runner {
                                         actorSet.getString("name")
                                 );
                             }
-                            System.out.println("");
+                            System.out.println();
 
                         }
                     }else{
-                        System.out.println("SELECT p.name,m.title, duration "+
+                        System.out.println("SELECT p.name, m.title, m.duration "+
                                 "FROM movies m JOIN people p ON "+
                                 "m.director_id = p.people_id "+regex+
-                                " ORDER BY m.title ASC");
+                                order);
                         ResultSet resultSet = conn.createStatement().executeQuery(
                                 "SELECT p.name, m.title, m.duration "+
                                     "FROM movies m JOIN people p ON "+
                                     "m.director_id = p.people_id "+regex+
-                                    " ORDER BY m.title ASC"
+                                    order
                         );
                         //SELECT stuff FROM table1 JOIN table2 ON table1.relatedColumn = table2.relatedColumn
                         while (resultSet.next()){
@@ -131,21 +140,25 @@ public class Runner {
                         String nome = scanner2.nextLine();
                         System.out.println("nationality: ");
                         String nationality = scanner2.nextLine();
-                        conn.createStatement().execute(
-                            "INSERT INTO `people` (`name`, `nationality`) VALUES ('"+nome+"', '"+nationality+"')"
-                        );
+                        try{
+                            conn.createStatement().execute(
+                                    "INSERT INTO `people` (`name`, `nationality`) VALUES ('"+nome+"', '"+nationality+"')"
+                            );
+                        }catch (Exception e){
+                            System.out.println("Error: Duplicated entry!");
+                        }
+
                     }
                     if(flagList.contains("-m")) {
                         System.out.println("Title: ");
                         String title = scanner2.nextLine();
 
-                        ResultSet resultAdd = null;
-                        String director = "";
+                        ResultSet resultAdd;
+                        String director;
                         boolean directorOk = false;
                         do{
                             System.out.println("Director: ");
                             director = scanner2.nextLine();
-                            //TODO: Make sure person exists
                             try{
                                 resultAdd = conn.createStatement().executeQuery(
                                         "SELECT p.people_id "+
@@ -177,8 +190,7 @@ public class Runner {
                                 "VALUES ('"+title+"', '"+director+"', '"+duration+"')"
                         );
 
-                        resultAdd = null;
-                        String actor = "";
+                        String actor;
                         do{
                             System.out.println("Starring: ");
                             actor = scanner2.nextLine();
@@ -193,12 +205,12 @@ public class Runner {
                                                 "WHERE p.name = '"+actor+"'"
                                 );
 
+                                //TODO: Finish up adding the actor~movie to Database
                                 if(resultAdd.next())
                                     actor = resultAdd.getString("name");
                                 else
                                     System.out.println("We could not find \""+actor+"\", try again!");
 
-                                directorOk = true;
                             }catch (Exception e){
 
                                 e.printStackTrace();
@@ -211,6 +223,7 @@ public class Runner {
                 }
                 case "d" -> {
                     System.out.println("delete");
+                    System.out.println("delete2");
                 }
             }
         }
