@@ -1,5 +1,8 @@
 package com.company;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,6 +11,7 @@ public class Main {
 //    static List<String> availableCommands = new ArrayList<>();
 //    static HashMap<String, Flags> availableCommands = new HashMap<>();
     static Commands availableCommands = new Commands();
+    static final boolean DEBUG = true;
 
     static {
         String newCommand;
@@ -52,11 +56,36 @@ public class Main {
     }
 
     public static void main(String[] args) {
-	// write your code here
+
+        Connection conn = null;
+
+        try {
+            String mysqlUrl = "jdbc:mysql://localhost/nokia_challenge_db?serverTimezone=UTC";
+            String username = "admin";
+            String password = "ra4Vy77W78LhCZd";
+
+            conn = DriverManager.getConnection(
+                    mysqlUrl,
+                    username,
+                    password
+            );
+            
+            System.out.println("Connection with the databse established...");
+//            ScriptRunner sr = new ScriptRunner(con);
+
+        } catch (SQLException ex) {
+            // handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+
+
         Scanner scanner = new Scanner(System.in);
         while(true){
             System.out.print("> ");
             String command = scanner.nextLine();
+
             validateCommand(command);
 
             if(command.equals("exit")){
@@ -64,6 +93,8 @@ public class Main {
             }
         }
     }
+
+
 
     public static boolean validateCommand(String raw_command){
 
@@ -76,7 +107,7 @@ public class Main {
         }
 
         //Debug
-//        System.out.println(matchList);
+        System.out.println(matchList);
         Iterator<String> matchListIterator = matchList.iterator();
 
         if (matchListIterator.hasNext()){
@@ -95,12 +126,22 @@ public class Main {
                         // Check integrity of regex
                         isParam = false;
                     }else{
-                        System.out.println("Testing "+testingSwitch+", is it a flag?  "+availableCommands.hasFlag(main_command, testingSwitch));
+                        if (DEBUG)
+                            System.out.println("Testing "+testingSwitch+", is it a flag?  "+availableCommands.hasFlag(main_command, testingSwitch));
+
                         if(availableCommands.hasFlag(main_command, testingSwitch)){
-                            System.out.println(testingSwitch+" has parameters");
-                            isParam = true;
+                            if (availableCommands.flagHasParam(main_command,testingSwitch)){
+                                if (DEBUG)
+                                    System.out.println("flag: "+testingSwitch+" has parameters");
+                                isParam = true;
+                            }else{
+                                //TODO: Check integrity of param
+                                if (DEBUG)
+                                    System.out.println("flag: "+testingSwitch+" has no parameters");
+                            }
                         }else{
-                            System.out.println(testingSwitch+" has no parameters");
+                            System.out.println(main_command+" is not a valid flag.");
+                            return false;
                         }
                     }
                 }

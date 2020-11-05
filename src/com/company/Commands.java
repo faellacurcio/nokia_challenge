@@ -30,5 +30,12 @@ public class Commands {
         return false;
     }
 
+    public boolean flagHasParam(String command, String flag){
+        if(hasCommand(command)){
+            return availableCommands.get(command).flagHasParam(flag);
+        }
+        return false;
+    }
+
 
 }

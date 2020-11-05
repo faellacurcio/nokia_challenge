@@ -20,4 +20,8 @@ public class Flags {
         return this.availableFlags.containsKey(flag);
     }
 
+    public boolean flagHasParam(String flag){
+        return this.availableFlags.get(flag);
+    }
+
 }
