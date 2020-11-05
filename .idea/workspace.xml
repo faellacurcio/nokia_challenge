@@ -19,17 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52ad0d2b-9dfb-48f2-815e-1d9d56895e72" name="Default Changelist" comment="New functionalities implemented; BugFixes;">
-      <change afterPath="$PROJECT_DIR$/src/com/company/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/utils/sql_TEST_script.sql" afterDir="false" />
+    <list default="true" id="52ad0d2b-9dfb-48f2-815e-1d9d56895e72" name="Default Changelist" comment="Added comments;">
+      <change afterPath="$PROJECT_DIR$/src/com/company/utils/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/nokia_challenge/com/company/utils/sql_script.sql" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/nokia_challenge/com/company/utils/sql_script.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Validation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Validation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/utils/sql_script.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/utils/sql_script.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +55,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />
       <module name="nokia_challenge" />
@@ -86,8 +81,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
   </component>
@@ -198,7 +193,49 @@
       <option name="project" value="LOCAL" />
       <updated>1604565509769</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Update README.md;">
+      <created>1604573619269</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1604573619269</updated>
+    </task>
+    <task id="LOCAL-00016" summary="SQL and java Scripts for testing done;">
+      <created>1604573642785</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1604573642785</updated>
+    </task>
+    <task id="LOCAL-00017" summary="New validation cases;">
+      <created>1604573685259</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1604573685259</updated>
+    </task>
+    <task id="LOCAL-00018" summary="sql script update;">
+      <created>1604573714200</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1604573714200</updated>
+    </task>
+    <task id="LOCAL-00019" summary="delete function, done;">
+      <created>1604573744304</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1604573744304</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Added comments;">
+      <created>1604573772088</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1604573772088</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -226,7 +263,13 @@
     <MESSAGE value="Implemented core of Runner; List and Add partially working;" />
     <MESSAGE value="Bugfix at parseToGetKeys();" />
     <MESSAGE value="New functionalities implemented; BugFixes;" />
-    <option name="LAST_COMMIT_MESSAGE" value="New functionalities implemented; BugFixes;" />
+    <MESSAGE value="Update README.md;" />
+    <MESSAGE value="SQL and java Scripts for testing done;" />
+    <MESSAGE value="New validation cases;" />
+    <MESSAGE value="sql script update;" />
+    <MESSAGE value="delete function, done;" />
+    <MESSAGE value="Added comments;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added comments;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="200" y="44" key="#Project_Structure" timestamp="1604541782692">
@@ -249,46 +292,46 @@
       <screen x="0" y="40" width="1440" height="860" />
     </state>
     <state x="426" y="211" key="FileChooserDialogImpl/0.40.1440.860@0.40.1440.860" timestamp="1604541775724" />
-    <state width="1397" height="228" key="GridCell.Tab.0.bottom" timestamp="1604573478718">
+    <state width="1380" height="227" key="GridCell.Tab.0.bottom" timestamp="1604575281868">
       <screen x="0" y="40" width="1440" height="860" />
     </state>
-    <state width="1397" height="228" key="GridCell.Tab.0.bottom/0.40.1440.860@0.40.1440.860" timestamp="1604573478718" />
-    <state width="1397" height="228" key="GridCell.Tab.0.center" timestamp="1604573478718">
+    <state width="1380" height="227" key="GridCell.Tab.0.bottom/0.40.1440.860@0.40.1440.860" timestamp="1604575281868" />
+    <state width="1380" height="227" key="GridCell.Tab.0.center" timestamp="1604575281867">
       <screen x="0" y="40" width="1440" height="860" />
     </state>
-    <state width="1397" height="228" key="GridCell.Tab.0.center/0.40.1440.860@0.40.1440.860" timestamp="1604573478718" />
-    <state width="1397" height="228" key="GridCell.Tab.0.left" timestamp="1604573478718">
+    <state width="1380" height="227" key="GridCell.Tab.0.center/0.40.1440.860@0.40.1440.860" timestamp="1604575281867" />
+    <state width="1380" height="227" key="GridCell.Tab.0.left" timestamp="1604575281867">
       <screen x="0" y="40" width="1440" height="860" />
     </state>
-    <state width="1397" height="228" key="GridCell.Tab.0.left/0.40.1440.860@0.40.1440.860" timestamp="1604573478718" />
-    <state width="1397" height="228" key="GridCell.Tab.0.right" timestamp="1604573478718">
+    <state width="1380" height="227" key="GridCell.Tab.0.left/0.40.1440.860@0.40.1440.860" timestamp="1604575281867" />
+    <state width="1380" height="227" key="GridCell.Tab.0.right" timestamp="1604575281867">
       <screen x="0" y="40" width="1440" height="860" />
     </state>
-    <state width="1397" height="228" key="GridCell.Tab.0.right/0.40.1440.860@0.40.1440.860" timestamp="1604573478718" />
-    <state width="1397" height="275" key="GridCell.Tab.1.bottom" timestamp="1604569708376">
+    <state width="1380" height="227" key="GridCell.Tab.0.right/0.40.1440.860@0.40.1440.860" timestamp="1604575281867" />
+    <state width="1380" height="271" key="GridCell.Tab.1.bottom" timestamp="1604574578972">
       <screen x="0" y="40" width="1440" height="860" />
     </state>
-    <state width="1397" height="275" key="GridCell.Tab.1.bottom/0.40.1440.860@0.40.1440.860" timestamp="1604569708376" />
-    <state width="1397" height="275" key="GridCell.Tab.1.center" timestamp="1604569708376">
+    <state width="1380" height="271" key="GridCell.Tab.1.bottom/0.40.1440.860@0.40.1440.860" timestamp="1604574578972" />
+    <state width="1380" height="271" key="GridCell.Tab.1.center" timestamp="1604574578972">
       <screen x="0" y="40" width="1440" height="860" />
     </state>
-    <state width="1397" height="275" key="GridCell.Tab.1.center/0.40.1440.860@0.40.1440.860" timestamp="1604569708376" />
-    <state width="1397" height="275" key="GridCell.Tab.1.left" timestamp="1604569708376">
+    <state width="1380" height="271" key="GridCell.Tab.1.center/0.40.1440.860@0.40.1440.860" timestamp="1604574578972" />
+    <state width="1380" height="271" key="GridCell.Tab.1.left" timestamp="1604574578972">
       <screen x="0" y="40" width="1440" height="860" />
     </state>
-    <state width="1397" height="275" key="GridCell.Tab.1.left/0.40.1440.860@0.40.1440.860" timestamp="1604569708376" />
-    <state width="1397" height="275" key="GridCell.Tab.1.right" timestamp="1604569708376">
+    <state width="1380" height="271" key="GridCell.Tab.1.left/0.40.1440.860@0.40.1440.860" timestamp="1604574578972" />
+    <state width="1380" height="271" key="GridCell.Tab.1.right" timestamp="1604574578972">
       <screen x="0" y="40" width="1440" height="860" />
     </state>
-    <state width="1397" height="275" key="GridCell.Tab.1.right/0.40.1440.860@0.40.1440.860" timestamp="1604569708376" />
+    <state width="1380" height="271" key="GridCell.Tab.1.right/0.40.1440.860@0.40.1440.860" timestamp="1604574578972" />
     <state x="200" y="44" key="SettingsEditor" timestamp="1604530119954">
       <screen x="0" y="40" width="1440" height="860" />
     </state>
     <state x="200" y="44" key="SettingsEditor/0.40.1440.860@0.40.1440.860" timestamp="1604530119954" />
-    <state x="312" y="203" key="Vcs.Push.Dialog.v2" timestamp="1604565519524">
+    <state x="312" y="203" key="Vcs.Push.Dialog.v2" timestamp="1604573775786">
       <screen x="0" y="40" width="1440" height="860" />
     </state>
-    <state x="312" y="203" key="Vcs.Push.Dialog.v2/0.40.1440.860@0.40.1440.860" timestamp="1604565519524" />
+    <state x="312" y="203" key="Vcs.Push.Dialog.v2/0.40.1440.860@0.40.1440.860" timestamp="1604573775786" />
     <state x="427" y="69" width="585" height="801" key="find.popup" timestamp="1604570621529">
       <screen x="0" y="40" width="1440" height="860" />
     </state>

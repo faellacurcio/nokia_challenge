@@ -276,6 +276,13 @@ public class Test {
         runCommand("d -p");
         runCommand("d -m");
 
+        System.out.println("===========================================");
+        System.out.println("============= END OF THE TEST =============");
+        System.out.println("============= END OF THE TEST =============");
+        System.out.println("============= END OF THE TEST =============");
+        System.out.println("============= END OF THE TEST =============");
+        System.out.println("===========================================");
+
 
 
     }
