@@ -7,9 +7,7 @@ import java.util.List;
  * The Validation class does the validation of the user input
  *
  *
- *
  * input: Commands availableCommands [, boolean DEBUG]
- *
  */
 public class Validation {
 

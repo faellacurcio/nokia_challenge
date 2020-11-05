@@ -24,18 +24,34 @@ public class Runner {
         this.availableCommands = availableCommands;
     }
 
+    /**
+     * The runCommand is the heart of the algorithm and does the heavy lifting interpreting the user input
+     * and calling the appropriate functions to execute the instructions, including all the communication with the
+     * database
+     *
+     * input String raw_command
+     * output none
+     */
     public void runCommand(String raw_command) throws SQLException {
+        /**
+         * Firstly the method extracts some usefull information of the availableCommands and raw_command (user command)
+         */
         HashMap<String, String> flags = Util.parseToHashMap(raw_command, availableCommands);
-
         List<String> matchList = Util.parseToList(raw_command);
         List<String> flagList = Util.parseToGetKeys(raw_command,availableCommands);
 
         Iterator<String> matchListIterator = matchList.iterator();
 
+        /**
+         * Then it iterate through the commands realizing the appropriate actions according to the command/flags/params
+         */
         if (matchListIterator.hasNext()) {
             String main_command = matchListIterator.next();
 
             switch (main_command) {
+                /**
+                 * List movies according to the flags/params
+                 */
                 case "l" -> {
                     String regex = "";
                     String order = "ORDER BY m.title ASC ";
@@ -121,6 +137,9 @@ public class Runner {
                     }
 
                 }
+                /**
+                 * Add new people/movies according to the flags/params
+                 */
                 case "a" -> {
                     Scanner scanner2 = new Scanner(System.in);
 
@@ -221,6 +240,9 @@ public class Runner {
                     }
 
                 }
+                /**
+                 * Delete movies according to the flags/params
+                 */
                 case "d" -> {
                     Scanner scanner3 = new Scanner(System.in);
 

@@ -7,7 +7,11 @@ import java.util.*;
 
 import static java.lang.System.exit;
 
-
+/**
+ * The Main class is the brain of the console applications, using all the necessary classes to create the console
+ * application proposed b the Nokia Challenge.
+ *
+ */
 public class Main {
 
     static Commands availableCommands = new Commands();
