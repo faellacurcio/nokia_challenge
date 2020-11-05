@@ -1,11 +1,16 @@
 package com.company;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+/**
+ * The Validation class does the validation of the user input
+ *
+ *
+ *
+ * input: Commands availableCommands [, boolean DEBUG]
+ *
+ */
 public class Validation {
 
     private final Commands availableCommands;
@@ -26,6 +31,11 @@ public class Validation {
         List matchList = Util.parseToList(raw_command);
 
         //TODO: Use Utils.parseToHashMap to check weird cases of flags.
+        List<String> flagList = Util.parseToGetKeys(raw_command,availableCommands);
+        if(flagList.contains("-la")&&flagList.contains("-ld")||flagList.contains("-p")&&flagList.contains("-m")){
+            System.out.println("Conflicting flags");
+            return false;
+        }
 
         //Debug
         if (DEBUG)
